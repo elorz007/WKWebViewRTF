@@ -14,6 +14,7 @@
 		8439767924128AC7002CB98E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8439767824128AC7002CB98E /* Assets.xcassets */; };
 		8439767C24128AC7002CB98E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8439767A24128AC7002CB98E /* LaunchScreen.storyboard */; };
 		8439767F24128AC7002CB98E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8439767E24128AC7002CB98E /* main.m */; };
+		8439768624128DF6002CB98E /* file.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 8439768524128DF5002CB98E /* file.rtf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		8439767B24128AC7002CB98E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8439767D24128AC7002CB98E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8439767E24128AC7002CB98E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8439768524128DF5002CB98E /* file.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = file.rtf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,13 +63,14 @@
 		8439766B24128AC5002CB98E /* WKWebViewRTF */ = {
 			isa = PBXGroup;
 			children = (
+				8439767224128AC5002CB98E /* ViewController.h */,
+				8439767324128AC5002CB98E /* ViewController.m */,
+				8439768524128DF5002CB98E /* file.rtf */,
+				8439767524128AC5002CB98E /* Main.storyboard */,
 				8439766C24128AC5002CB98E /* AppDelegate.h */,
 				8439766D24128AC5002CB98E /* AppDelegate.m */,
 				8439766F24128AC5002CB98E /* SceneDelegate.h */,
 				8439767024128AC5002CB98E /* SceneDelegate.m */,
-				8439767224128AC5002CB98E /* ViewController.h */,
-				8439767324128AC5002CB98E /* ViewController.m */,
-				8439767524128AC5002CB98E /* Main.storyboard */,
 				8439767824128AC7002CB98E /* Assets.xcassets */,
 				8439767A24128AC7002CB98E /* LaunchScreen.storyboard */,
 				8439767D24128AC7002CB98E /* Info.plist */,
@@ -135,6 +138,7 @@
 			files = (
 				8439767C24128AC7002CB98E /* LaunchScreen.storyboard in Resources */,
 				8439767924128AC7002CB98E /* Assets.xcassets in Resources */,
+				8439768624128DF6002CB98E /* file.rtf in Resources */,
 				8439767724128AC5002CB98E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
