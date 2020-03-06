@@ -14,10 +14,12 @@ Doesn't work: treated as text, not as rtf
     [self.webView loadData:data MIMEType:MIMEType characterEncodingName:encodingName baseURL:fileURL];
 }
 ```
-![non working screenshot][./WKWebView830.png]
+
+![non working screenshot](WKWebView830.png)
 
 
-Doesn't work: "This file cannot be previewed, it might be corrupted or of an unknown file format"
+
+This also doesn't work: "This file cannot be previewed, it might be corrupted or of an unknown file format"
 This workaround works with .docx files as seen in https://forums.developer.apple.com/thread/109589 but it doesn't for .rtf
 ```
 - (void)loadRTFInlineDataURL {
@@ -32,6 +34,8 @@ This workaround works with .docx files as seen in https://forums.developer.apple
     [self.webView loadRequest:request];
 }
 ```
+
+
 However, these work:
 ```
 - (void)loadRTFRequest {
@@ -47,4 +51,4 @@ However, these work:
 }
 ```
 
-![working screenshot][UIWebView803.png]
+![working screenshot](UIWebView803.png)
