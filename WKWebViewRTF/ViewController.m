@@ -11,7 +11,6 @@
 
 @interface ViewController () <WKNavigationDelegate>
 @property (nonatomic, weak) IBOutlet WKWebView *webView;
-@property (nonatomic, assign) BOOL performHackyReloadWorkaround;
 @end
 
 @implementation ViewController
@@ -19,9 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.webView.navigationDelegate = self;
-    
-    self.performHackyReloadWorkaround = YES;
-    
+        
     // Doesn't work: treated as text, not as rtf
     [self loadRTFData];
     
@@ -45,7 +42,7 @@
     NSString *MIMEType = @"application/rtf";
     //MIMEType = @"text/rtf";
     NSString *encodingName = @"utf-8";
-    [self.webView loadData:data MIMEType:MIMEType characterEncodingName:encodingName baseURL:fileURL];
+    [self.webView loadData:data MIMEType:MIMEType characterEncodingName:encodingName baseURL:nil];
 }
 
 - (void)loadRTFInlineDataURL {
@@ -104,10 +101,7 @@
 //MARK: - WKNavigationDelegate
 
 -(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-    if (self.performHackyReloadWorkaround) {
-        self.performHackyReloadWorkaround = NO;
-        [self.webView reload];
-    }
+
 }
 
 @end
