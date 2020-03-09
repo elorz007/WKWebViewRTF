@@ -105,6 +105,7 @@
 
 -(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     if (self.performHackyReloadWorkaround) {
+        self.performHackyReloadWorkaround = NO;
         [self.webView reload];
     }
 }
