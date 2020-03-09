@@ -42,7 +42,8 @@
     NSString *MIMEType = @"application/rtf";
     //MIMEType = @"text/rtf";
     NSString *encodingName = @"utf-8";
-    [self.webView loadData:data MIMEType:MIMEType characterEncodingName:encodingName baseURL:nil];
+    NSURL *baseURL = nil;
+    [self.webView loadData:data MIMEType:MIMEType characterEncodingName:encodingName baseURL:baseURL];
 }
 
 - (void)loadRTFInlineDataURL {
