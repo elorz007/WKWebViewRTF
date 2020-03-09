@@ -2,13 +2,14 @@
 
 In the examples below we use data from file but in the real scenario the data doesn't come from a file and we cannot write it in disc because of security rules.
 
+----
 **Update, found workaround:**
 ```
 -(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     [self.webView reload];
 }
 ```
-
+----
 
 Doesn't work: treated as text, not as rtf
 ```
