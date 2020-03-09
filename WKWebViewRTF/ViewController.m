@@ -9,14 +9,18 @@
 #import "ViewController.h"
 @import  WebKit;
 
-@interface ViewController ()
+@interface ViewController () <WKNavigationDelegate>
 @property (nonatomic, weak) IBOutlet WKWebView *webView;
+@property (nonatomic, assign) BOOL performHackyReloadWorkaround;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.webView.navigationDelegate = self;
+    
+    self.performHackyReloadWorkaround = YES;
     
     // Doesn't work: treated as text, not as rtf
     [self loadRTFData];
@@ -97,6 +101,12 @@
 }
 
 
+//MARK: - WKNavigationDelegate
 
+-(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    if (self.performHackyReloadWorkaround) {
+        [self.webView reload];
+    }
+}
 
 @end
