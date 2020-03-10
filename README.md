@@ -1,5 +1,36 @@
-# When trying to load a .rtf file into a WKWebView from data, it doesn't work.
+# Problem description
+When trying to load a .docx or .rtf file into a WKWebView using the `-loadData:MIMEType:characterEncodingName:baseURL`, it doesn't work. Loading the same file from a web page or from a file URL works fine, meaning that the WKWebView correctly supports the file.
+One possible workaround is to write the data into a file and then load the file but sometimes this is not a viable solution (e.g. client requirement that no data should be written unencrypted in the file system).
 
+Useful info:
+https://forums.developer.apple.com/thread/109589
+
+## Workaround without writing files on disk ##
+1. Use a custom scheme handler
+```
+WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
+id<WKURLSchemeHandler> schemeHandler = ...
+[configuration setURLSchemeHandler:schemeHandler forURLScheme:@"someCustomScheme"];
+WKWebView *webView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:configuration];
+```
+2. Load the data with that custom scheme:
+```
+[self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL urlWithString:@"someCustomScheme://name.rtf]]];
+```
+3. In the scheme handler, provide the data in the protocol method:
+```
+- (void)webView:(WKWebView *)webView startURLSchemeTask:(id<WKURLSchemeTask>)urlSchemeTask {
+    NSData *data = ...
+    NSURLResponse *workaroundResponse =
+        [[NSURLResponse alloc] initWithURL:[NSURL urlWithString:@"someCustomScheme://name.rtf] MIMEType:@"application/rtf" expectedContentLength:data.length textEncodingName:@"utf-8"];
+    // These three methods must be called and exactly in this order, if not an exception will be thrown
+    [urlSchemeTask didReceiveResponse:workaroundResponse];
+    [urlSchemeTask didReceiveData:data];
+    [urlSchemeTask didFinish];
+}
+```
+
+## Original approaches ## 
 In the examples below we use data from file but in the real scenario the data doesn't come from a file and we cannot write it in disc because of security rules.
 
 Doesn't work: treated as text, not as rtf
