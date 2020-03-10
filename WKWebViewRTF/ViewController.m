@@ -7,20 +7,22 @@
 //
 
 #import "ViewController.h"
+#import "WKWebViewDocumentURLSchemeHandler.h"
 @import  WebKit;
 
 @interface ViewController () <WKNavigationDelegate>
-@property (nonatomic, weak) IBOutlet WKWebView *webView;
+@property (nonatomic, weak) WKWebView *webView;
+@property (nonatomic, strong) WKWebViewDocumentURLSchemeHandler *schemeHandler;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.webView.navigationDelegate = self;
+    [self setupWebView];
         
     // Doesn't work: treated as text, not as rtf
-    [self loadRTFData];
+    //[self loadRTFData];
     
     // Doesn't work: treated as text, not as rtf
     //[self loadRTFDataTask];
@@ -29,11 +31,26 @@
     // This workaround works with .docx files as seen in https://forums.developer.apple.com/thread/109589 but it doesn't for .rtf
     //[self loadRTFInlineDataURL];
     
+    // Workaround: use a custom scheme to provide data
+    [self loadRTFDataThroughCustomSchemeHandler];
+    
     // Works:
     //[self loadRTFRequest];
     
     // Works:
     //[self loadRTFFile];
+}
+
+- (void)setupWebView {
+    WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
+
+    self.schemeHandler = [[WKWebViewDocumentURLSchemeHandler alloc] init];
+    [configuration setURLSchemeHandler:self.schemeHandler forURLScheme:self.schemeHandler.workaroundScheme];
+
+    WKWebView *webView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:configuration];
+    [self addSubviewAndStretchInAllDirections:webView];
+    self.webView = webView;
+    self.webView.navigationDelegate = self;
 }
 
 - (void)loadRTFData {
@@ -56,6 +73,10 @@
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
+}
+
+- (void)loadRTFDataThroughCustomSchemeHandler {
+    [self.webView loadRequest:[NSURLRequest requestWithURL:self.schemeHandler.workaroundURL]];
 }
 
 - (void)loadRTFFile {
@@ -98,11 +119,20 @@
     }] resume];
 }
 
-
 //MARK: - WKNavigationDelegate
 
 -(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
 
+}
+
+//MARK: - Helpers
+
+- (void)addSubviewAndStretchInAllDirections:(UIView *)subview {
+    subview.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:subview];
+    NSDictionary *viewBinding = NSDictionaryOfVariableBindings(subview);
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[subview]|" options:0 metrics:nil views:viewBinding]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[subview]|" options:0 metrics:nil views:viewBinding]];
 }
 
 @end

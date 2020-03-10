@@ -16,6 +16,7 @@
 		8439767F24128AC7002CB98E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8439767E24128AC7002CB98E /* main.m */; };
 		8439768624128DF6002CB98E /* file.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 8439768524128DF5002CB98E /* file.rtf */; };
 		843976A4241655A4002CB98E /* file.docx in Resources */ = {isa = PBXBuildFile; fileRef = 843976A324165578002CB98E /* file.docx */; };
+		843976DE2417CE2D002CB98E /* WKWebViewDocumentURLSchemeHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 843976DD2417CE2D002CB98E /* WKWebViewDocumentURLSchemeHandler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,8 @@
 		8439767E24128AC7002CB98E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8439768524128DF5002CB98E /* file.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = file.rtf; sourceTree = "<group>"; };
 		843976A324165578002CB98E /* file.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = file.docx; sourceTree = "<group>"; };
+		843976DC2417CE2D002CB98E /* WKWebViewDocumentURLSchemeHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKWebViewDocumentURLSchemeHandler.h; sourceTree = "<group>"; };
+		843976DD2417CE2D002CB98E /* WKWebViewDocumentURLSchemeHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKWebViewDocumentURLSchemeHandler.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +70,8 @@
 			children = (
 				8439767224128AC5002CB98E /* ViewController.h */,
 				8439767324128AC5002CB98E /* ViewController.m */,
+				843976DC2417CE2D002CB98E /* WKWebViewDocumentURLSchemeHandler.h */,
+				843976DD2417CE2D002CB98E /* WKWebViewDocumentURLSchemeHandler.m */,
 				8439768524128DF5002CB98E /* file.rtf */,
 				843976A324165578002CB98E /* file.docx */,
 				8439767524128AC5002CB98E /* Main.storyboard */,
@@ -157,6 +162,7 @@
 				8439767424128AC5002CB98E /* ViewController.m in Sources */,
 				8439766E24128AC5002CB98E /* AppDelegate.m in Sources */,
 				8439767F24128AC7002CB98E /* main.m in Sources */,
+				843976DE2417CE2D002CB98E /* WKWebViewDocumentURLSchemeHandler.m in Sources */,
 				8439767124128AC5002CB98E /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
